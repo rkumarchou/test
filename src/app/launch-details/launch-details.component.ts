@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy } from "@angular/core";
+import { Component, ChangeDetectionStrategy, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { NgxGalleryOptions, NgxGalleryImage, NgxGalleryAnimation } from '@kolkov/ngx-gallery';
 import { LaunchDetailsFacadeService } from "./../services/launch-details-facade.service";
@@ -11,7 +11,7 @@ import { Observable } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 
-export class LaunchDetailsComponent {
+export class LaunchDetailsComponent implements OnInit {
   launchDetails$: Observable<any>;
   galleryOptions: NgxGalleryOptions[];
   galleryImages: NgxGalleryImage[] = [];
@@ -24,10 +24,10 @@ export class LaunchDetailsComponent {
         params.get("id")
       );
     })
-    this.initGallery();
   }
 
-  private initGallery(): void {
+  ngOnInit() {
+    // Initializing gallery options
     this.galleryOptions = [
       {
         width: "500px",

@@ -14,6 +14,7 @@ import { RelativeTimePipe } from "./core/helpers/pipes/relative-time/relative-ti
 import { StoreModule } from "@ngrx/store";
 import { EffectsModule } from "@ngrx/effects";
 import { StoreDevtoolsModule } from "@ngrx/store-devtools";
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { StoreDevtoolsModule } from "@ngrx/store-devtools";
     MatCardModule,
     StoreModule.forRoot(launchReducers),
     EffectsModule.forRoot(launchEffects),
-    StoreDevtoolsModule.instrument()
+    StoreDevtoolsModule.instrument(),
+    MatProgressSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

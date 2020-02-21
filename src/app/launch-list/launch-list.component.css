@@ -9,3 +9,10 @@
 .mat-card {
   cursor: pointer;
 }
+
+.loader {
+  height: 250px;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+}

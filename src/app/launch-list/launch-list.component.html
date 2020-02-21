@@ -25,9 +25,17 @@
           width="300"
           mat-card-image
           loading="lazy"
-          [src]="launch.links.flickr_images[0]"
+          [hidden]="!launch.isImageLoaded"
+          (load)="launch.isImageLoaded = true"
+          [src]="launch.links.flickr_images[0] || 'assets/images/default.png'"
           alt="Photo of {{ launch.mission_name }}"
         />
+        <div 
+          class="loader" 
+          *ngIf="!launch.isImageLoaded"
+        >
+          <mat-spinner></mat-spinner>
+        </div>
       </mat-card>
     </section>
   </main>

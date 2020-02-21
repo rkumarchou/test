@@ -19,7 +19,6 @@ import { DateAgoPipe } from './core/helpers/pipes/date-ago.pipe'
 import { MatIconModule } from "@angular/material/icon";
 import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 
-
 @NgModule({
   declarations: [
     AppComponent,

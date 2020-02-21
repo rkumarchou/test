@@ -16,6 +16,9 @@ import { EffectsModule } from "@ngrx/effects";
 import { StoreDevtoolsModule } from "@ngrx/store-devtools";
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { DateAgoPipe } from './core/helpers/pipes/date-ago.pipe'
+import { MatIconModule } from "@angular/material/icon";
+import { NgxGalleryModule } from '@kolkov/ngx-gallery';
+
 
 @NgModule({
   declarations: [
@@ -35,7 +38,9 @@ import { DateAgoPipe } from './core/helpers/pipes/date-ago.pipe'
     StoreModule.forRoot(launchReducers),
     EffectsModule.forRoot(launchEffects),
     StoreDevtoolsModule.instrument(),
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatIconModule,
+    NgxGalleryModule
   ],
   providers: [],
   bootstrap: [AppComponent]

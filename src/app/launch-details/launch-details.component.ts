@@ -1,8 +1,8 @@
 import { Component, ChangeDetectionStrategy } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { map, switchMap } from "rxjs/operators";
-import { LaunchDetailsGQL } from "../services/spacexGraphql.service";
 import { NgxGalleryOptions, NgxGalleryImage, NgxGalleryAnimation } from '@kolkov/ngx-gallery';
+import { LaunchDetailsFacadeService } from "./../services/launch-details-facade.service";
+import { Observable } from 'rxjs';
 
 @Component({
   selector: "app-launch-details",
@@ -12,20 +12,20 @@ import { NgxGalleryOptions, NgxGalleryImage, NgxGalleryAnimation } from '@kolkov
 })
 
 export class LaunchDetailsComponent {
+  launchDetails$: Observable<any>;
   galleryOptions: NgxGalleryOptions[];
   galleryImages: NgxGalleryImage[] = [];
   constructor(
     private readonly route: ActivatedRoute,
-    private readonly launchDetailsService: LaunchDetailsGQL,
+    private readonly launchDetailsFacade: LaunchDetailsFacadeService
   ) {
+    this.route.paramMap.subscribe(params => {
+      this.launchDetails$  = this.launchDetailsFacade.launchDetailsStoreCache(
+        params.get("id")
+      );
+    })
     this.initGallery();
   }
-
-  launchDetails$ = this.route.paramMap.pipe(
-    map(params => params.get("id") as string),
-    switchMap(id => this.launchDetailsService.fetch({ id })),
-    map(res => res.data.launch)
-  );
 
   private initGallery(): void {
     this.galleryOptions = [
